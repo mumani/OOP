@@ -13,4 +13,13 @@ class Player
     "#{name} has #{state}"
   end
 
+  def move(arr)
+    pos = gets
+    if @name == player1
+      arr.insert(pos, 'X')
+    elsif @name == player2
+      arr.insert(pos, 'O')
+    end
+  end
+
 end
