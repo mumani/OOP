@@ -1,39 +1,23 @@
-#defining the player class object
-class Player
-  attr_accessor :name, :id, :state
+puts "Welcome to TIC TAC TOE"
 
-  def initialize(name, id, state)
-    @name = name    #player1 or player2
-    @id =id         # 'X' or 'O'
-    @state = state  # win! or lose!
-  end
+# puts "Player 1 enter your name"
+# player1 = gets.strip
+#
+# puts "Player 2 enter your name"
+# player2 = gets.strip
 
-  #to display the winner/loser
-  def to_s
-    "#{name} has #{state}"
-  end
+board = Array.new(8, " ")
 
+def print_board(board)
+  %{#{board[0]}|#{board[1]}|#{board[2]}
+------
+#{board[3]}|#{board[4]}|#{board[5]}
+------
+#{board[6]}|#{board[7]}|#{board[8]}}
 end
 
-#defining the playing board
-class Board
-  @@size = 9
-  attr_accessor :curr_value
-
-  def initialize(curr_value)
-    @curr_value = curr_value
-  end
-
-  def vertical_check
-  end
-
-  def horizontal_check
-  end
-
-  def diagonol_check
-  end
-
-end
+board[1] = "x"
+puts print_board(board)
 
 #method to declare a winner
 def is_gameover?
