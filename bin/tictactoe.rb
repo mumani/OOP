@@ -24,11 +24,12 @@ end
 
 def play(board)
   if $turn.even?
-    puts "#{$player2}'s turn, pick a position"
+    puts "#{$player2}'s turn, pick a position between 1 - 9"
     pos = gets.strip
-    Integer(pos.to_i)
-    if (0..8).to_a.include? pos.to_i
-      board[pos.to_i] = "x"
+    pos = Integer(pos) rescue false
+
+    if (1..8).to_a.include? pos
+      board[pos-1] = "x"
       $turn += 1
       puts print_board(board)
     else
@@ -36,10 +37,11 @@ def play(board)
     end
 
   else
-    puts "#{$player1}'s turn, pick a position"
+    puts "#{$player1}'s turn, pick a position between 1-9"
     pos = gets.strip
-    if (0..8).include? pos.to_i
-      board[pos.to_i] = "o"
+    pos = Integer(pos) rescue false
+    if (1..9).include? pos
+      board[pos-1] = "o"
       $turn += 1
       puts print_board(board)
     else
@@ -62,7 +64,7 @@ def hor_check(arry)
     puts "#{$player2} WINS"
   when arry[6...9] == ['x', 'x', 'x']
     puts "#{$player2} WINS"
-  end    
+  end
 end
 
 def ver_check(arry)
