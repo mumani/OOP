@@ -7,6 +7,7 @@ puts "Player 2 enter your name"
 $player2 = gets.strip
 
 board = Array.new(9, " ")
+puts board[1] == " "
 
 #method to declare a winner
 def is_gameover?(board)
@@ -28,7 +29,7 @@ def play(board)
     pos = gets.strip
     pos = Integer(pos) rescue false
 
-    if (1..8).to_a.include? pos
+    if (1..9).to_a.include? pos and board[2].eql?(" ")
       board[pos-1] = "x"
       $turn += 1
       puts print_board(board)
@@ -40,7 +41,7 @@ def play(board)
     puts "#{$player1}'s turn, pick a position between 1-9"
     pos = gets.strip
     pos = Integer(pos) rescue false
-    if (1..9).include? pos
+    if (1..9).include? pos and board[pos-1].eql?(" ")
       board[pos-1] = "o"
       $turn += 1
       puts print_board(board)
