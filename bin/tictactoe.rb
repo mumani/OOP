@@ -26,23 +26,24 @@ def play(board)
   if $turn.even?
     puts "#{$player2}'s turn, pick a position"
     pos = gets.strip
-    if !(0..8).include? pos
+    Integer(pos.to_i)
+    if (0..8).to_a.include? pos.to_i
       board[pos.to_i] = "x"
       $turn += 1
       puts print_board(board)
     else
-      puts "Invalid position. Try Again!"
+      puts "Invalid position. Try Again"
     end
 
   else
     puts "#{$player1}'s turn, pick a position"
     pos = gets.strip
-    if !(0..8).include? pos
+    if (0..8).include? pos.to_i
       board[pos.to_i] = "o"
       $turn += 1
       puts print_board(board)
     else
-      puts "Invalid position. Try Again!"
+      puts "Invalid position. Try Again"
     end
   end
 end
