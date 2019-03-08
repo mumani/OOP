@@ -37,7 +37,7 @@ end
 #called for player turns
 # takes in the board values as input
 # checks the turn value to determine what player's turn it is
-# checks player selected position to determine if it's a vaalid move
+# checks player selected position to determine if it's a valid move
 # updates and prints the board
 def play(board)
   if $turn.even?
@@ -67,6 +67,7 @@ def play(board)
   end
 end
 
+#checks for horizontal alignment
 def hor_check(arry)
   esc = false
   case
@@ -92,6 +93,7 @@ def hor_check(arry)
   return esc
 end
 
+#checks for vertical alignment
 def ver_check(arry)
   esc = false
   case
@@ -117,6 +119,7 @@ def ver_check(arry)
   return esc
 end
 
+#checks for diagonal alignment
 def dia_check(arry)
   esc = false
   case
