@@ -12,8 +12,14 @@ board = Array.new(8, " ")
 def is_gameover?(board)
   while $turn < 10
     play(board)
+    if $turn >= 5
+      hor_check(board)
+      #ver_check
+      #dia_check
+    end
+
   end
-  puts "Game Over"
+  puts "Game Over!"
 end
 
 def play(board)
@@ -25,7 +31,7 @@ def play(board)
       $turn += 1
       puts print_board(board)
     else
-      puts "Invalid position. Try Again"
+      puts "Invalid position. Try Again!"
     end
 
   else
@@ -36,8 +42,25 @@ def play(board)
       $turn += 1
       puts print_board(board)
     else
-      puts "Invalid position. Try Again"
+      puts "Invalid position. Try Again!"
     end
+  end
+end
+
+def hor_check(arry)
+  case
+  when arry[0...3] == ['o', 'o', 'o']
+    puts "#{$player1} WINS"
+  when arry[3...6] == ['o', 'o', 'o']
+    puts "#{$player1} WINS"
+  when arry[6...9] == ['o', 'o', 'o']
+    puts "#{$player1} WINS"
+  when arry[0...3] == ['x', 'x', 'x']
+    puts "#{$player2} WINS"
+  when arry[3...6] == ['x', 'x', 'x']
+    puts "#{$player2} WINS"
+  when arry[6...9] == ['x', 'x', 'x']
+    puts "#{$player2} WINS"
   end
 end
 
@@ -51,10 +74,3 @@ end
 
 
 is_gameover?(board)
-
-
-
-
-
-
-
