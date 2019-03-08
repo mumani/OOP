@@ -14,9 +14,15 @@ def is_gameover?(board)
   while $turn < 10
     play(board)
     if $turn >= 5
-      hor_check(board)
-      ver_check(board)
-      dia_check(board)
+      if hor_check(board) == true
+        break
+      end
+      if ver_check(board) == true
+        break
+      end
+      if dia_check(board) == true
+        break
+      end
     end
 
   end
@@ -34,7 +40,7 @@ def play(board)
       $turn += 1
       puts print_board(board)
     else
-      puts "Invalid position. Try Again"
+      puts "Invalid position. Try Again!"
     end
 
   else
@@ -46,55 +52,76 @@ def play(board)
       $turn += 1
       puts print_board(board)
     else
-      puts "Invalid position. Try Again"
+      puts "Invalid position. Try Again!"
     end
   end
 end
 
 def hor_check(arry)
+  esc = false
   case
   when arry[0...3] == ['o', 'o', 'o']
-    puts "#{$player1} WINS"
+    puts "#{$player1} WINS!"
+    esc = true
   when arry[3...6] == ['o', 'o', 'o']
-    puts "#{$player1} WINS"
+    puts "#{$player1} WINS!"
+    esc = true
   when arry[6...9] == ['o', 'o', 'o']
-    puts "#{$player1} WINS"
+    puts "#{$player1} WINS!"
+    esc = true
   when arry[0...3] == ['x', 'x', 'x']
-    puts "#{$player2} WINS"
+    puts "#{$player2} WINS!"
+    esc = true
   when arry[3...6] == ['x', 'x', 'x']
-    puts "#{$player2} WINS"
+    puts "#{$player2} WINS!"
+    esc = true
   when arry[6...9] == ['x', 'x', 'x']
-    puts "#{$player2} WINS"
+    puts "#{$player2} WINS!"
+    esc = true
   end
+  return esc
 end
 
 def ver_check(arry)
+  esc = false
   case
   when arry[0] + arry[3] + arry[6] == "ooo"
-    puts "#{$player1} WINS"
+    puts "#{$player1} WINS!"
+    esc = true
   when arry[1] + arry[4] + arry[7] == "ooo"
-    puts "#{$player1} WINS"
+    puts "#{$player1} WINS!"
+    esc = true
   when arry[2] + arry[5] + arry[8] == "ooo"
-    puts "#{$player1} WINS"
+    puts "#{$player1} WINS!"
+    esc = true
   when arry[0] + arry[3] + arry[6] == "xxx"
-    puts "#{$player2} WINS"
+    puts "#{$player2} WINS!"
+    esc = true
   when arry[1] + arry[4] + arry[7] == "xxx"
-    puts "#{$player2} WINS"
+    puts "#{$player2} WINS!"
+    esc = true
   when arry[2] + arry[5] + arry[8] == "xxx"
-    puts "#{$player2} WINS"
+    puts "#{$player2} WINS!"
+    esc = true
   end
+  return esc
 end
 
 def dia_check(arry)
+  esc = false
   case
   when arry[0] + arry[4] + arry[8] == "ooo"
-    puts "#{$player1} WINS"
+    puts "#{$player1} WINS!"
+    esc = true
   when arry[2] + arry[4] + arry[6] == "ooo"
-    puts "#{$player1} WINS"
+    puts "#{$player1} WINS!"
+    esc = true
   when arry[0] + arry[4] + arry[8] == "xxx"
-    puts "#{$player2} WINS"
+    puts "#{$player2} WINS!"
+    esc = true
   when arry[2] + arry[4] + arry[6] == "xxx"
-    puts "#{$player2} WINS"
+    puts "#{$player2} WINS!"
+    esc = true
   end
 end
 
