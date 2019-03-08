@@ -6,7 +6,7 @@ $player1 = gets.strip
 puts "Player 2 enter your name"
 $player2 = gets.strip
 
-board = Array.new(8, " ")
+board = Array.new(9, " ")
 
 #method to declare a winner
 def is_gameover?(board)
@@ -14,7 +14,7 @@ def is_gameover?(board)
     play(board)
     if $turn >= 5
       hor_check(board)
-      #ver_check
+      ver_check(board)
       #dia_check
     end
 
@@ -60,6 +60,23 @@ def hor_check(arry)
   when arry[3...6] == ['x', 'x', 'x']
     puts "#{$player2} WINS"
   when arry[6...9] == ['x', 'x', 'x']
+    puts "#{$player2} WINS"
+  end
+end
+
+def ver_check(arry)
+  case
+  when arry[0] + arry[3] + arry[6] == "ooo"
+    puts "#{$player1} WINS"
+  when arry[1] + arry[4] + arry[7] == "ooo"
+    puts "#{$player1} WINS"
+  when arry[2] + arry[5] + arry[8] == "ooo"
+    puts "#{$player1} WINS"
+  when arry[0] + arry[3] + arry[6] == "xxx"
+    puts "#{$player2} WINS"
+  when arry[1] + arry[4] + arry[7] == "xxx"
+    puts "#{$player2} WINS"
+  when arry[2] + arry[5] + arry[8] == "xxx"
     puts "#{$player2} WINS"
   end
 end
