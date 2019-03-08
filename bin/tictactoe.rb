@@ -15,7 +15,7 @@ def is_gameover?(board)
     if $turn >= 5
       hor_check(board)
       ver_check(board)
-      #dia_check
+      dia_check(board)
     end
 
   end
@@ -61,7 +61,7 @@ def hor_check(arry)
     puts "#{$player2} WINS"
   when arry[6...9] == ['x', 'x', 'x']
     puts "#{$player2} WINS"
-  end
+  end    
 end
 
 def ver_check(arry)
@@ -77,6 +77,19 @@ def ver_check(arry)
   when arry[1] + arry[4] + arry[7] == "xxx"
     puts "#{$player2} WINS"
   when arry[2] + arry[5] + arry[8] == "xxx"
+    puts "#{$player2} WINS"
+  end
+end
+
+def dia_check(arry)
+  case
+  when arry[0] + arry[4] + arry[8] == "ooo"
+    puts "#{$player1} WINS"
+  when arry[2] + arry[4] + arry[6] == "ooo"
+    puts "#{$player1} WINS"
+  when arry[0] + arry[4] + arry[8] == "xxx"
+    puts "#{$player2} WINS"
+  when arry[2] + arry[4] + arry[6] == "xxx"
     puts "#{$player2} WINS"
   end
 end
