@@ -1,13 +1,15 @@
 puts "Welcome to TIC TAC TOE"
 $turn = 1
+
+#Registers users to the game
 puts "Player 1 enter your name"
 $player1 = gets.strip
 
 puts "Player 2 enter your name"
 $player2 = gets.strip
 
+#initializes the game board values
 board = Array.new(9, " ")
-puts board[1] == " "
 
 #method to declare a winner
 def is_gameover?(board)
@@ -29,6 +31,11 @@ def is_gameover?(board)
   puts "Game Over!"
 end
 
+#called for player turns
+# takes in the board values as input
+# checks the turn value to determine what player's turn it is
+# checks player selected position to determine if it's a vaalid move
+# updates and prints the board
 def play(board)
   if $turn.even?
     puts "#{$player2}'s turn, pick a position between 1 - 9"
@@ -125,6 +132,8 @@ def dia_check(arry)
   end
 end
 
+#displays the game board
+#using the passed in list items as cell values
 def print_board(board)
   %{#{board[0]}|#{board[1]}|#{board[2]}
 ------
