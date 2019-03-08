@@ -35,7 +35,7 @@ def play(board)
     pos = gets.strip
     pos = Integer(pos) rescue false
 
-    if (1..9).to_a.include? pos and board[2].eql?(" ")
+    if (1..9).to_a.include? pos and board[pos-1].eql?(" ")
       board[pos-1] = "x"
       $turn += 1
       puts print_board(board)
