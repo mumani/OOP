@@ -26,7 +26,10 @@ def is_gameover?(board)
         break
       end
     end
-
+    if $turn == 10
+      puts "DRAW!"
+      break
+    end
   end
   puts "Game Over!"
 end
