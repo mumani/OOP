@@ -61,18 +61,4 @@ class Player
 
 end
 
-print "Player 1 enter your name:"
-# $player1 = Player.new.tap{ |player1| player1.name = gets.strip}
-$player1 = Player.new(gets.strip)
-$player1.set_id
-print "Player 2 enter your name:"
-$player2 = Player.new(gets.strip)
-$player2.set_id
 
-puts $player1.id
-puts $player2.id
-puts $player1.name
-puts $player2.name
-
-puts Player.get_no
-Player.get_turn

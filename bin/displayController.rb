@@ -15,4 +15,9 @@ class DisplayController
     puts 'Welcome to TIC TAC TOE'
   end
 
+  def self.position
+    pos =gets.strip
+    pos = Integer(pos) rescue false
+  end
+
 end

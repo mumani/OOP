@@ -1,4 +1,4 @@
-# require_relative '../lib/player'
+require_relative '../lib/player'
 require_relative '../bin/displayController'
 require_relative '../lib/board'
 
@@ -10,10 +10,27 @@ $turn = 1
 
 #Registers users to the game
 puts "Player 1 enter your name"
-$player1 = gets.strip
-
+player1 = gets.strip
+$player1 = Player.new(player1)
 puts "Player 2 enter your name"
 $player2 = gets.strip
+
+
+print "Player 1 enter your name:"
+# $player1 = Player.new.tap{ |player1| player1.name = gets.strip}
+$player1 = Player.new(gets.strip)
+$player1.set_id
+print "Player 2 enter your name:"
+$player2 = Player.new(gets.strip)
+$player2.set_id
+
+puts $player1.id
+puts $player2.id
+puts $player1.name
+puts $player2.name
+
+puts Player.get_no
+Player.get_turn
 
 # initializes the game board values
 board = Array.new(9, ' ')
@@ -49,8 +66,7 @@ end
 def play(board)
   if $turn.even?
     puts "#{$player2}'s turn, pick a position between 1 - 9"
-    pos = gets.strip
-    pos = Integer(pos) rescue false
+    pos = DisplayController.position
     if valid_move(board, pos)
       board[pos-1] = "x"
       $turn += 1
@@ -61,8 +77,7 @@ def play(board)
 
   else
     puts "#{$player1}'s turn, pick a position between 1-9"
-    pos = gets.strip
-    pos = Integer(pos) rescue false
+    pos = DisplayController.position
     if valid_move(board, pos)
       board[pos-1] = "o"
       $turn += 1
