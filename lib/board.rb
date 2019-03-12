@@ -1,4 +1,4 @@
-#defining the playing board
+# defining the playing board
 class Board
   @@size = 9
   attr_accessor :curr_value
