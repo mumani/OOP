@@ -4,9 +4,9 @@ class Player
   @@turn = 1
   attr_accessor :name, :id, :state
 
-  def initialize(name)
+  def initialize(name, id)
     @name = name      #player1 or player2
-    @id ="*not set*"         # 'X' or 'O'
+    @id = id        # 'X' or 'O'
     @state = state    # win! or lose!
     @@no_of_players += 1
   end
@@ -30,6 +30,7 @@ class Player
       @id = 'x'
     end
   end
+
 
   def play(board)
     if @@turn.even?

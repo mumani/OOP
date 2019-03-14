@@ -9,27 +9,20 @@ $turn = 1
 
 
 #Registers users to the game
+=begin
 puts "Player 1 enter your name"
 player1 = gets.strip
 $player1 = Player.new(player1)
 puts "Player 2 enter your name"
 $player2 = gets.strip
+=end
 
 
-print "Player 1 enter your name:"
-# $player1 = Player.new.tap{ |player1| player1.name = gets.strip}
-$player1 = Player.new(gets.strip)
-$player1.set_id
-print "Player 2 enter your name:"
-$player2 = Player.new(gets.strip)
-$player2.set_id
+print 'Player 1 enter your name:'
+$player1 = Player.new(gets.strip, 'x')
+print 'Player 2 enter your name:'
+$player2 = Player.new(gets.strip, 'o')
 
-puts $player1.id
-puts $player2.id
-puts $player1.name
-puts $player2.name
-
-puts Player.get_no
 Player.get_turn
 
 # initializes the game board values
@@ -65,10 +58,10 @@ end
 # updates and prints the board
 def play(board)
   if $turn.even?
-    puts "#{$player2}'s turn, pick a position between 1 - 9"
+    puts "#{$player2.name}'s turn, pick a position between 1 - 9"
     pos = DisplayController.position
     if valid_move(board, pos)
-      board[pos-1] = "x"
+      board[pos-1] = $player2.id
       $turn += 1
       puts DisplayController.print_board(board)
     else
@@ -76,10 +69,10 @@ def play(board)
     end
 
   else
-    puts "#{$player1}'s turn, pick a position between 1-9"
+    puts "#{$player1.name}'s turn, pick a position between 1-9"
     pos = DisplayController.position
     if valid_move(board, pos)
-      board[pos-1] = "o"
+      board[pos-1] = $player1.id
       $turn += 1
       puts DisplayController.print_board(board)
     else
