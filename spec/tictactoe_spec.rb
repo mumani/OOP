@@ -1,6 +1,8 @@
+require 'rspec'
+
 # Our RSpec test is here
 require_relative '../lib/player'
-require 'rspec'
+
 
 describe 'Player' do
 
@@ -14,3 +16,4 @@ describe 'Player' do
     expect(player.name).to eql('Ade')
   end
 end
+
