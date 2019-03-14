@@ -4,16 +4,19 @@ require 'rspec'
 require_relative '../lib/player'
 
 
-describe 'Player' do
+describe player = Player.new('Ade', 'x') do
 
   it 'create a new user with name and id' do
-    player = Player.new('Ade', 'x')
     expect(player.nil?).to eql(false)
   end
 
   it 'create a new user with name as a string' do
-    player = Player.new('Ade', 'x')
     expect(player.name).to eql('Ade')
   end
+
+  it 'expects turn to be 1 for single player creation' do
+    expect(Player.get_no).to eql(1)
+  end
+
 end
 

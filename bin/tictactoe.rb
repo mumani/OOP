@@ -2,33 +2,60 @@ require_relative '../lib/player'
 require_relative '../bin/displayController'
 require_relative '../lib/board'
 
+class TicTacToe
+  attr_reader :players, :board, :current_player, :next_player, :game_on
+
+  def initialize(players)
+    @players = players
+    @board = Array.new(9, ' ')
+    @current_player, @next_player = players
+    @game_on = true
+  end
+
+  # called for player turns
+  # takes in the board values as input
+  # checks the turn value to determine what player's turn it is
+  # checks player selected position to determine if it's a valid move
+  # updates and prints the board
+  def play
+    puts "#{@current_player.name}'s turn, pick a position between 1 - 9"
+    pos = DisplayController.position
+    if valid_move(pos)
+      @board[pos - 1] = @current_player.id
+      switch
+      puts DisplayController.print_board(board)
+    else
+      puts 'Invalid position. Try Again!'
+    end
+  end
+
+  def game_over?
+    while game_on
+      play
+    end
+  end
+
+  def valid_move(pos)
+    ((1..9).to_a.include? pos) && @board[pos - 1].eql?(' ')
+  end
+
+  def switch
+    @current_player, @next_player = @next_player, @current_player
+  end
+end
+
 DisplayController.welcome
-
-$turn = 1
-
-
-
-#Registers users to the game
-=begin
-puts "Player 1 enter your name"
-player1 = gets.strip
-$player1 = Player.new(player1)
-puts "Player 2 enter your name"
-$player2 = gets.strip
-=end
 
 
 print 'Player 1 enter your name:'
-$player1 = Player.new(gets.strip, 'x')
+player1 = Player.new(gets.strip, 'x')
 print 'Player 2 enter your name:'
-$player2 = Player.new(gets.strip, 'o')
+player2 = Player.new(gets.strip, 'o')
 
-Player.get_turn
+players = [player1, player2]
 
-# initializes the game board values
-board = Array.new(9, ' ')
 
-#method to declare a winner
+# method to declare a winner
 def is_gameover?(board)
   while $turn < 10
     play(board)
@@ -51,43 +78,6 @@ def is_gameover?(board)
   puts "Game Over!"
 end
 
-# called for player turns
-# takes in the board values as input
-# checks the turn value to determine what player's turn it is
-# checks player selected position to determine if it's a valid move
-# updates and prints the board
-def play(board)
-  if $turn.even?
-    puts "#{$player2.name}'s turn, pick a position between 1 - 9"
-    pos = DisplayController.position
-    if valid_move(board, pos)
-      board[pos-1] = $player2.id
-      $turn += 1
-      puts DisplayController.print_board(board)
-    else
-      puts 'Invalid position. Try Again!'
-    end
-
-  else
-    puts "#{$player1.name}'s turn, pick a position between 1-9"
-    pos = DisplayController.position
-    if valid_move(board, pos)
-      board[pos-1] = $player1.id
-      $turn += 1
-      puts DisplayController.print_board(board)
-    else
-      puts "Invalid position. Try Again!"
-    end
-  end
-end
-
-def valid_move(board, pos)
-  ((1..9).to_a.include? pos) && board[pos - 1].eql?(' ')
-end
-
-def make_move(board, player)
-
-end
 
 # checks for horizontal alignment
 def hor_check(arry)
@@ -162,5 +152,8 @@ end
 
 
 
+new_game = TicTacToe.new(players)
+new_game.game_over?
 
-is_gameover?(board)
+
+

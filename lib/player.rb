@@ -32,6 +32,7 @@ class Player
   end
 
 
+=begin
   def play(board)
     if @@turn.even?
       puts "#{$player2.name}'s turn, pick a position between 1 - 9"
@@ -59,6 +60,7 @@ class Player
       end
     end
   end
+=end
 
 end
 
