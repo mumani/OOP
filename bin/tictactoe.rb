@@ -18,14 +18,16 @@ class TicTacToe
   # checks player selected position to determine if it's a valid move
   # updates and prints the board
   def play
-    puts "#{@current_player.name}'s turn, pick a position between 1 - 9"
+    #puts "#{@current_player.name}'s turn, pick a position between 1 - 9"
+    DisplayController.play(current_player.name)
     pos = DisplayController.position
     if valid_move(pos)
       @board[pos - 1] = @current_player.id
       switch
       puts DisplayController.print_board(board)
     else
-      puts 'Invalid position. Try Again!'
+      #puts 'Invalid position. Try Again!'
+      DisplayController.play
     end
   end
 
