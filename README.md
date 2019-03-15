@@ -1,7 +1,14 @@
 # OOP
 TIC-TAC TOE
 
-Instructions for Gaming
+###Requirements
+Any Operating System that has Ruby installed
+
+###Run Game
+- Clone this repository
+- run ruby bin/tictactoe.rb in your terminal from project root
+
+###Instructions for Gaming
 1. This is a multi-player game and can be played only by a maximum of two players.
 2.
 3.
