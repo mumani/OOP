@@ -1,22 +1,23 @@
 require 'rspec'
-
-# Our RSpec test is here
-require_relative '../lib/player'
+require '../bin/tictactoe'
 
 
-describe player = Player.new('Ade', 'x') do
+describe 'TicTacToe' do
+  let(:player1) { Player.new('Tester1', 'o') }
+  let(:player2) { Player.new('Tester2', 'x') }
+  let(:players) { [player1, player2] }
 
-  it 'create a new user with name and id' do
-    expect(player.nil?).to eql(false)
+  before(:each) do
+    @game = TicTacToe.new(players)
+  end
+  # let(:game) { TicTacToe.new(players) }
+
+  it 'should start the game' do
+    @game.game_on.should_not be_false
   end
 
-  it 'create a new user with name as a string' do
-    expect(player.name).to eql('Ade')
+  it 'should only take numbers between 1 and 9' do
+    @game.valid_move(10).should be_falsey
   end
-
-  it 'expects turn to be 1 for single player creation' do
-    expect(Player.get_no).to eql(1)
-  end
-
 end
 
