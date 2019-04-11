@@ -1,22 +1,60 @@
 require 'rspec'
-
-# Our RSpec test is here
-require_relative '../lib/player'
+require_relative '../bin/tictactoe'
 
 
-describe player = Player.new('Ade', 'x') do
+describe 'TicTacToe' do
+  let(:player1) { Player.new('Tester1', 'o') }
+  let(:player2) { Player.new('Tester2', 'x') }
+  let(:players) { [player1, player2] }
 
-  it 'create a new user with name and id' do
-    expect(player.nil?).to eql(false)
+  #before(:each) do
+  #  @game = TicTacToe.new(players)
+  #end
+  let(:game) { TicTacToe.new(players) }
+
+  
+  it 'should start the game' do
+    expect(game.game_on).to be_truthy
   end
 
-  it 'create a new user with name as a string' do
-    expect(player.name).to eql('Ade')
+  it 'should only take numbers between 1 and 9' do
+    expect(game.valid_move(10)).to be_falsey
   end
 
-  it 'expects turn to be 1 for single player creation' do
-    expect(Player.get_no).to eql(1)
+  it 'should only pass numbers between 1 and 9' do
+    expect(game.valid_move(1)).to be_truthy
+  end
+  
+
+  it 'should pass the players attributes' do
+    expect(game.players).to eq players
+  end
+    
+  it 'initialize with an empty board' do
+    expect(game.board).to eq [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+  end
+
+  let!(:switch) { game.switch}
+  it 'switches the players' do    
+    expect(game.players[0]).to eq switch[1]
+  end
+
+  
+  it 'should return true for winning combinations' do
+    arrays = [['o', 'o', 'o',' ', 'x', 'x', 'o', 'x', ' '], ['x', 'o', 'x','o', 'o', 'o', 'x', ' ', 'x'], ['x', 'o', 'o','o', 'o', 'x', 'x', 'o', 'x'],
+            ]
+    arrays.each do |my_board|
+      expect(game.win_check(my_board)).to eq true
+    end
+  end
+
+  it 'should return false for bad combinations(draws)' do
+    arrays = [['o', 'o', 'x',' ', 'x', 'x', 'o', 'x', ' '], ['o', 'o', 'x','x', 'x', 'x', 'o', 'x', 'o'], ['x', 'o', 'x','x', 'o', 'x', 'o', 'x', 'o']]
+    arrays.each do |my_board|
+      expect(game.win_check(my_board)).to eq false
+    end
   end
 
 end
+
 

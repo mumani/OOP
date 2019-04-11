@@ -43,7 +43,7 @@ class TicTacToe
     DisplayController.game_over('G')
   end
 
-  def win_check
+  def win_check(board)
     hor_check = board[0...3].all?(next_player.id) || board[3...6].all?(next_player
                 .id) || board[6...9].all?(next_player.id)
     vertical_check = board.values_at(0, 3, 6).all?(next_player.id) || board.values_at(1, 4, 7).all?(next_player.id) || board.values_at(2, 5, 8).all?(next_player.id)
@@ -59,16 +59,4 @@ class TicTacToe
     @current_player, @next_player = @next_player, @current_player
   end
 end
-
-DisplayController.welcome
-
-DisplayController.player_name('Player 1')
-player1 = Player.new(gets.strip, 'x')
-DisplayController.player_name('Player 2')
-player2 = Player.new(gets.strip, 'o')
-
-players = [player1, player2]
-
-new_game = TicTacToe.new(players)
-new_game.game_over?
 
