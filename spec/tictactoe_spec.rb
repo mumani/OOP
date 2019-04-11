@@ -3,9 +3,9 @@ require_relative '../bin/tictactoe'
 
 
 describe 'TicTacToe' do
-  let!(:player1) { Player.new('Tester1', 'o') }
-  let!(:player2) { Player.new('Tester2', 'x') }
-  let!(:players) { [player1, player2] }
+  let(:player1) { Player.new('Tester1', 'o') }
+  let(:player2) { Player.new('Tester2', 'x') }
+  let(:players) { [player1, player2] }
 
   #before(:each) do
   #  @game = TicTacToe.new(players)
@@ -31,8 +31,6 @@ describe 'TicTacToe' do
   end
     
   it 'initialize with an empty board' do
-    # game.board = ['o', 'o', 'o',' ', 'x', 'x', 'o', 'x', ' ']
-    # p game.board
     expect(game.board).to eq [" ", " ", " ", " ", " ", " ", " ", " ", " "]
   end
 
@@ -42,12 +40,19 @@ describe 'TicTacToe' do
   end
 
   
-  it 'should return true for winnig combinations' do
-    expect(game.win_check(['o', 'o', 'o',' ', 'x', 'x', 'o', 'x', ' '])).to eq true
+  it 'should return true for winning combinations' do
+    arrays = [['o', 'o', 'o',' ', 'x', 'x', 'o', 'x', ' '], ['x', 'o', 'x','o', 'o', 'o', 'x', ' ', 'x'], ['x', 'o', 'o','o', 'o', 'x', 'x', 'o', 'x'],
+            ]
+    arrays.each do |my_board|
+      expect(game.win_check(my_board)).to eq true
+    end
   end
 
-  it 'should return false for bad combinations' do
-    expect(game.win_check(['o', 'o', 'x',' ', 'x', 'x', 'o', 'x', ' '])).to eq false
+  it 'should return false for bad combinations(draws)' do
+    arrays = [['o', 'o', 'x',' ', 'x', 'x', 'o', 'x', ' '], ['o', 'o', 'x','x', 'x', 'x', 'o', 'x', 'o'], ['x', 'o', 'x','x', 'o', 'x', 'o', 'x', 'o']]
+    arrays.each do |my_board|
+      expect(game.win_check(my_board)).to eq false
+    end
   end
 
 end
